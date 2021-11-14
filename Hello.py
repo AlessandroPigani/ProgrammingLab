@@ -1,0 +1,1 @@
+print("Wise men say only fools rush in")
