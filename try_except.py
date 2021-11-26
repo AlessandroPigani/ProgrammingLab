@@ -1,10 +1,7 @@
 #ho fatto copia-incolla
-class CSVfile():  
+class CSVFile():  
     def __init__(self, KJ):  
         self.name = KJ    
-
-
-
 
     def get_data(self):  
         my_list = []
@@ -26,13 +23,13 @@ class CSVfile():
             my_file.close()
 
         except OSError:  #errore nell'interagire col sistema (in questo caso apro un file inesistente)
-            print('il file "claudiobaglioni" non esiste')
+            print('il file "{}" non esiste'.format(self.name))
             print('prova ad aprire un altro file')
 
         return my_list  #nella lista non ho inserito alcun elemento. Quindi mi ritornerà una lista vuota
 
 
-pippo = CSVfile('claudiobaglioni.txt') #chiamo un file che non esiste
+pippo = CSVFile('claudiobaglioni.txt') #chiamo un file che non esiste
 
 print(pippo.name)
-print(pippo.get_data())
+print(pippo.get_data())    
