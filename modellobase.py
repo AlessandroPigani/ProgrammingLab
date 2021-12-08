@@ -2,11 +2,13 @@ class Model():
 
     def fit(self,data):
         # Fit non implementanto nella classe base
-        raise NotImplentedError
+        raise NotImplentedError('Metodo non implementanto')
 
     def predict(self,data):
         # Predict non implementanto nella classe base
-        raise NotImplentedError
+        raise NotImplentedError('Metodo non implementanto')
+        #anche se in realtà NotImplentedError non è un'eccezione built in.
+        #Forse converrebbe mettere un generico exception
 
 
 class IncrementedModel(Model): #implemento (definisco) la funzione predict
