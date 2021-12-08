@@ -1,9 +1,11 @@
 class Model():
 
     def fit(self,data):
+        # Fit non implementanto nella classe base
         raise NotImplentedError
 
     def predict(self,data):
+        # Predict non implementanto nella classe base
         raise NotImplentedError
 
 
@@ -21,7 +23,7 @@ class IncrementedModel(Model): #implemento (definisco) la funzione predict
 
         media = somma/(len(data)-1)  
         #len è una funzione che mi misura la lunghezza della lista
-        #considero il range fra i mesi settembre e novembre (2) non (3)
+        #considero gli n mesi precedenti rispetto a novembre (2) non (3)
 
         risultato = media + data[-1] 
         #data[-1] mi individua l'ultimo elemento della lista data
