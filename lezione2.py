@@ -13,7 +13,7 @@ for item in lista:    #potrei fare direttamente print(lista)
 
 print("nome 1:{}, nome 2:{}". format(lista[0], lista[1]))
 
-lista = lista + ["gianni"]
+lista.append("gianni")
 print(lista)
 
 lista = lista + [13,17]
@@ -49,7 +49,7 @@ print(dizionario["data"])
 def funz(arg1, arg2):
     print("argomenti: {} {}". format(arg1, arg2))
 
-#chiamo la funzione (ISTANZIAZIONE)
+#chiamo la funzione 
 funz("pippo", "pluto")  #saranno arg1 e arg2
 
 
