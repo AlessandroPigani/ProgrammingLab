@@ -43,12 +43,13 @@ vendite=[]   #mi preparo una lista vuota
 
 mio_file = open("shampoo_sales.txt","r")
 for line in mio_file:
-    
-    elements = line.split(",")
+      
+    elements = line.split(",")   #ora ho tanti listini
     
     if(elements[0]!="Date"):  #salto la prima riga del titolo
         giorno = elements[0]   
         valore = elements[1] #quando esco da questo blocco le variabili giorno e #valore non esistono più
+        #non serve tagliare l'ultimo carattere perchè traformerò la stringa in numero
         vendite.append(float(valore))   #passo da stringa a numero
 
 print(vendite)    #ora ho farcito la lista vendite con i valori

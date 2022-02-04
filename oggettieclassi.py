@@ -31,7 +31,7 @@ class CSVfile():  #questo è un oggetto (classe)
         return my_list
 
 
-pippo = CSVfile('shampoo_sales.txt')
+pippo = CSVfile('shampoo_sales.txt')  #sarebbe il parametro kj
 
 print(pippo.name)
 print(pippo.get_data())

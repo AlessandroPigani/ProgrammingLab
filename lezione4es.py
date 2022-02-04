@@ -29,3 +29,4 @@ class CSVFile():
 goal = CSVFile("shampoo_sales.txt")  #inizializzo il metodo init
 
 print(goal.get_data())  #chiamo il metodo get data
+#istanza goal; reparto get data()

@@ -10,7 +10,8 @@ class Studente():
     def bonjour(self):    #non aggiungo altri parametri
         print("ecco a voi: {}: {} {}". format(self.ruolo, self.nome, self.cognome))
 
-ciapo = Studente("Giulio", "Caravagna")
+ciapo = Studente("Giulio", "Caravagna")  
+#non serve che specifico il ruolo (tanto è uguale per tutti)
 
 ciapo.bonjour()
 
