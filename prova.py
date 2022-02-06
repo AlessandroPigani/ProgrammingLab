@@ -36,7 +36,13 @@ for i in range(len(data)):
 #allora appendimi la riga nella lista
 
 
-
-
+#come stampare un certo intervallo di righe di un file
 my_file = open("shampoo_sales.txt", "r")
 print(my_file.readlines()[12:14])
+
+#_______________________________________________________________
+
+
+
+def somma(self,a,b):
+    return a+b
