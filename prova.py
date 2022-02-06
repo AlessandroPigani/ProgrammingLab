@@ -20,8 +20,23 @@ for i,element in enumerate(inizio):
 
 print(fine)
 
-
-
-
-
+data = [2,6,4,7,2,3,9,6]
+for i in range(len(data)):
     
+    print(i)
+
+
+#voglio stampare dalla 14^ riga alla 22^
+
+#perciò
+
+#per ogni riga nel file
+#devo dare degli indici alle righe
+#se l'indice della riga e compreso nel range(14,22)
+#allora appendimi la riga nella lista
+
+
+
+
+my_file = open("shampoo_sales.txt", "r")
+print(my_file.readlines()[12:14])
