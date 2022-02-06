@@ -19,7 +19,7 @@ class IncrementedModel(Model): #implemento (definisco) la funzione predict
         somma = 0
         for i,item in enumerate(data):  #i è l'indice associato ad item
         #item srebbe ogni elemento della lista data
-            if(i!=len(data)-1): #mi salta l'elemento con ultimo indice
+            if(i!=len(data)-1): #mi salta l'indice che sforerebbe
                 somma = somma + (data[i+1] - data[i])
 
 
