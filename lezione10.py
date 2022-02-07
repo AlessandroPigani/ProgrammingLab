@@ -58,37 +58,55 @@ class FitIncrementModel(IncrementModel):
 
         return risultato
 
-lista = [8,19,31,41,50,52,60,67,72,79]
+lista = [8,19,31,41,50,52,60,67,72,77]
 
 n_mesi_controllo = 3
 
-control = lista [-n_mesi_controllo : ]
+control = lista [-n_mesi_controllo : ]  #da -3 fino alla fine
 print("valori per il controllo: {}". format(control))
 
-mesi_fit = lista [0 : - n_mesi_controllo]
+mesi_fit = lista [0 : - n_mesi_controllo]    #dall'inizio fino a -3
 
 print("valori per il modello: {}". format(mesi_fit))
 
 pippo = FitIncrementModel()
-print(pippo.fit(mesi_fit))
-paperino = pippo.predict(mesi_fit)
+print("aumento medio iniziale: {}". format(pippo.fit(mesi_fit)))
 
-print("modello senza controllo: {}". format(paperino))
+predizioni = []  #per dilettarmi creo una lista in cui inserirò le predizioni
+
+contatore = 0 #mi servirà nel ciclo for per salvarmi la somma di tutti gli errori
 
 #itero per fare i controlli e aggiornare la lista dei mesi_fit
 for i,element in enumerate(control):
+    print("-----------------------------------------------------")
+
     aumento = pippo.fit(mesi_fit)
     print("aumento medio: {}". format(aumento))
 
     quo = pippo.predict(mesi_fit)    #quo è la predizione
     print("valore predetto: {}". format(quo))
 
+    predizioni.append(quo)
+
     scarto = quo - control[i]   #control[i] è il valore effettivo
     print("lo scarto è: {}". format(scarto))
 
+    contatore = contatore + scarto
+
     mesi_fit.append(control[i])  #gonfio la lista dei mesi della fit
 
-    print("next one")
+    print("-----------------------------------------------------")
 
 #più si va avanti più i valori per il controllo entrano nella fit e applico l'aumento medio all'ultimo mesi considerato
 
+errore_medio = contatore / n_mesi_controllo
+
+print("errore medio: {}". format(errore_medio))
+#ho qualche dubbio sullìultimo valore
+
+from matplotlib import pyplot
+pyplot.plot(lista[0:-n_mesi_controllo] + predizioni, color='tab:red')
+pyplot.plot(lista, color='tab:blue')
+pyplot.show()
+
+#SPETTACOLO
