@@ -31,7 +31,7 @@ class FitIncrementModel(IncrementModel):
     #vado a implementare il metodo fit
 
 #scrivo praticamente ciò che c'è nella predict di increment model
-    def fit(self,data):
+    def fit(self,data):    #gli darò in pasto i primi 4 mesi
         
         somma = 0
         for i,item in enumerate(data):
@@ -42,16 +42,18 @@ class FitIncrementModel(IncrementModel):
 
         res_fit = somma / (len(data)-1)
 
-        return res_fit   #mi sarà utile
+        self.global_avg_increment = res_fit    #mi sarà utile
+
+        return res_fit 
 
 
 
     
     #sovrascrivo il metodo predict
 
-    def predict(self,data):
+    def predict(self,data):     #gli darò in pasto gli ultimi mesi
 
-        dilà = self.fit(data)    #è qui l'errore
+        dilà = self.global_avg_increment  
         #mi salvo in una variabile il risultato della fit
         print("dilà: {}". format(dilà))
 
@@ -71,7 +73,7 @@ class FitIncrementModel(IncrementModel):
     
 
         plus = (dilà + aumento)/2
-        print(plus)
+        print("aumento medio finale: {}". format(plus))
 
         risultato = data[-1] + plus
 
@@ -84,17 +86,17 @@ pippo = FitIncrementModel()
 print("primi elementi: {}". format(lista[0:4]))
 
 
-print("incremento medio sui primi dati: {}". format(pippo.fit(lista[0:4]))) #va fino all'elemento di indice 3
+print("incremento medio sui primi dati: {}". format(pippo.fit(lista[0:4]))) #va fino all'elemento di indice 3  (4 escluso)
 
 print("però dò più peso agli ultimi mesi")
-print("ultimi mesi: {}". format(lista[4:7]))
+print("ultimi elementi: {}". format(lista[4:7]))
 
 print("perciò la previsione sarà: {}". format(pippo.predict(lista[4:7])))
-#va dall'elemento di indice 4 fino all'elemetno di indice 6
+#va dall'elemento di indice 4 fino all'elemetno di indice 6  (7 escluso)
 
         
 
-        
+#FORSE POTEVO EVITAREDI SCRIVERMI TUTTE QUELLE ROBE NELLA FitIncrementModel USANDO la funzione super()
 
 
 
