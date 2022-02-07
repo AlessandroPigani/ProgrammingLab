@@ -23,8 +23,7 @@ class IncrementModel(Model):
 
         prediction = data[-1] + aumento_medio
 
-        return prediction
-
+        return aumento_medio
 
 #estendo la classe increment Model
 class FitIncrementModel(IncrementModel):
@@ -53,26 +52,18 @@ class FitIncrementModel(IncrementModel):
 
     def predict(self,data):     #gli darò in pasto gli ultimi mesi
 
+        
+        #dilà è l'aumento nei primi mesi
         dilà = self.global_avg_increment  
         #mi salvo in una variabile il risultato della fit
         print("dilà: {}". format(dilà))
 
-
-        scarti = 0
-
-        for i,item in enumerate(data):
-            
-            #considero solo gli ultimi valori
-            if(i != len(data)-1):
-
-                scarti = scarti + data[i+1] - data[i]
-
-        aumento = scarti / (len(data)-1) 
-        print("aumento negli ultimi mesi: {}". format(aumento))
-
+        #parental prediction è l'aumento nei primi mesi
+        parental_prediction = super().predict(data)
+        #recupero direttamente il vslore che mi dà la predict di IncrementModel (classe padre)
     
 
-        plus = (dilà + aumento)/2
+        plus = (dilà + parental_prediction)/2
         print("aumento medio finale: {}". format(plus))
 
         risultato = data[-1] + plus
@@ -93,10 +84,6 @@ print("ultimi elementi: {}". format(lista[4:7]))
 
 print("perciò la previsione sarà: {}". format(pippo.predict(lista[4:7])))
 #va dall'elemento di indice 4 fino all'elemetno di indice 6  (7 escluso)
-
-        
-
-#FORSE POTEVO EVITAREDI SCRIVERMI TUTTE QUELLE ROBE NELLA FitIncrementModel USANDO la funzione super()
 
 
 
