@@ -49,20 +49,25 @@ def compute_avg_monthly_difference(listone, first_year, last_year):
 
     
     #la funzione int me li trasforma in interi
+    #non posso mettere float
+    #altrimenti mi darebbe errore nello slicing
     first_year = int(first_year) - 1949  
-    last_year = int(last_year) - 1949
+    last_year = int(last_year) - 1949 
     
+     
     print(first_year) #inutile
     print(last_year)
     
-    lista = lista [first_year: last_year]
+    lista = lista [first_year : last_year+1]
     #taglio la lista dove mi interessa
 
     print("_________________________________________________________")
 
-    print(lista)
+    print(lista)  #nuova
 
-    
+
+
+    #ORA DEVO TROVARE IL MODO DI FARE INTERAGIRE IL DATO DI FEBBRAIO CON FEBBRAIO, IL DATO DI MARZO CON MARZO ETC
 
     
     
