@@ -23,14 +23,14 @@ class IncrementModel(Model):
 
         prediction = data[-1] + aumento_medio
 
-        return aumento_medio   #mi andrò a pescare questo valore nella predict di FitIncrementModel
+        return aumento_medio  
 
 #estendo la classe increment Model
 class FitIncrementModel(IncrementModel):
     #vado a implementare il metodo fit
 
 #scrivo praticamente ciò che c'è nella predict di increment model
-    def fit(self,data):    #gli darò in pasto i primi 4 mesi
+    def fit(self,data):    #gli darò in pasto una lista
         
         somma = 0
         for i,item in enumerate(data):
@@ -57,6 +57,7 @@ class FitIncrementModel(IncrementModel):
         risultato = data[-1] + self.global_avg_increment
 
         return risultato
+        
 
 lista = [8,19,31,41,50,52,60,67,72,77]
 
@@ -88,7 +89,9 @@ for i,element in enumerate(control):
 
     predizioni.append(quo)
 
-    scarto = quo - control[i]   #control[i] è il valore effettivo
+    print("il valore vero era: {}". format(control[i]))
+
+    scarto = abs(quo - control[i])   #control[i] è il valore effettivo
     print("lo scarto è: {}". format(scarto))
 
     contatore = contatore + scarto

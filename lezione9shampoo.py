@@ -5,7 +5,7 @@ class Pesca():
         self.name = name
 
     def get_data(self):
-        my_file = open("shampoo_sales.txt", "r")
+        my_file = open(self.name, "r")
 
         lista_nuova = []  #mi preparo una lista in cui inserirò valori
 
