@@ -47,21 +47,20 @@ def compute_avg_monthly_difference(listone, first_year, last_year):
 
     print(lista)   #all'interno del listone ho creato delle liste, ogni lista interna al listone contiene i dati di un anno
 
-    listini = []  #ci inserirò le liste degli anni che mi interessano
     
-
-    first_year = float(first_year) - 1949
-    last_year = float(last_year) - 1949
+    #la funzione int me li trasforma in interi
+    first_year = int(first_year) - 1949  
+    last_year = int(last_year) - 1949
     
-
+    print(first_year) #inutile
+    print(last_year)
     
-    for i,item in enumerate(lista):  #itero sulla lista
-        if(i>=first_year and i<=last_year):
-            listini.append(lista[i])
+    lista = lista [first_year: last_year]
+    #taglio la lista dove mi interessa
 
     print("_________________________________________________________")
 
-    print(listini)
+    print(lista)
 
     
 
