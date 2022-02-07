@@ -23,7 +23,7 @@ class IncrementModel(Model):
 
         prediction = data[-1] + aumento_medio
 
-        return aumento_medio
+        return aumento_medio   #mi andrò a pescare questo valore nella predict di FitIncrementModel
 
 #estendo la classe increment Model
 class FitIncrementModel(IncrementModel):
@@ -60,7 +60,7 @@ class FitIncrementModel(IncrementModel):
 
         #parental prediction è l'aumento nei primi mesi
         parental_prediction = super().predict(data)
-        #recupero direttamente il vslore che mi dà la predict di IncrementModel (classe padre)
+        #recupero direttamente il valore che mi dà la predict di IncrementModel (classe padre)
 
         print("aumento negli ultimi mesi: {}". format(parental_prediction))
     
@@ -74,7 +74,7 @@ class FitIncrementModel(IncrementModel):
 
 lista = [8,19,31,41,50,52,60]
 
-pippo = FitIncrementModel()
+pippo = FitIncrementModel()   #istanza dell'oggetto FitIncrementModel
 
 print("primi elementi: {}". format(lista[0:4]))
 
@@ -84,8 +84,20 @@ print("incremento medio sui primi dati: {}". format(pippo.fit(lista[0:4]))) #va 
 print("però dò più peso agli ultimi mesi")
 print("ultimi elementi: {}". format(lista[4:7]))
 
-print("perciò la previsione sarà: {}". format(pippo.predict(lista[4:7])))
+previsione = pippo.predict(lista[4:7])
+
+print("perciò la previsione sarà: {}". format(previsione))
 #va dall'elemento di indice 4 fino all'elemetno di indice 6  (7 escluso)
+
+if not previsione == 68:
+    raise Exception('FitIncrementModel sul dataset di test non mi torna 68 ma "{}"'.format(previsione))
+else:
+    print('FitIncrementModel test passed')
+
+from matplotlib import pyplot
+pyplot.plot(lista + [previsione], color="tab:red")
+pyplot.plot(lista, color="tab:blue")
+pyplot.show()
 
 
 
