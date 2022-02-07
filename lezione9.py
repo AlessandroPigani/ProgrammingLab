@@ -30,7 +30,7 @@ class IncrementModel(Model):
 class FitIncrementModel(IncrementModel):
     #vado a implementare il metodo fit
 
-#scrivo praticamente ciò che c'è nella oredict di increment model
+#scrivo praticamente ciò che c'è nella predict di increment model
     def fit(self,data):
         
         somma = 0
@@ -51,8 +51,9 @@ class FitIncrementModel(IncrementModel):
 
     def predict(self,data):
 
-        dilà = self.fit(data)  
+        dilà = self.fit(data)    #è qui l'errore
         #mi salvo in una variabile il risultato della fit
+        print("dilà: {}". format(dilà))
 
 
         scarti = 0
@@ -60,16 +61,17 @@ class FitIncrementModel(IncrementModel):
         for i,item in enumerate(data):
             
             #considero solo gli ultimi valori
-            if(i >= len(data)-3 and i<(len(data)-1)):
+            if(i != len(data)-1):
 
                 scarti = scarti + data[i+1] - data[i]
 
-        aumento = scarti / ((len(data)-1) - (len(data)-3))
-
+        aumento = scarti / (len(data)-1) 
+        print("aumento negli ultimi mesi: {}". format(aumento))
 
     
 
         plus = (dilà + aumento)/2
+        print(plus)
 
         risultato = data[-1] + plus
 
@@ -79,10 +81,16 @@ lista = [8,19,31,41,50,52,60]
 
 pippo = FitIncrementModel()
 
+print("primi elementi: {}". format(lista[0:4]))
 
-print("incremento medio su tutti i dati: {}". format(pippo.fit(lista)))
+
+print("incremento medio sui primi dati: {}". format(pippo.fit(lista[0:4]))) #va fino all'elemento di indice 3
+
 print("però dò più peso agli ultimi mesi")
-print("perciò la previsione sarà: {}". format(pippo.predict(lista)))
+print("ultimi mesi: {}". format(lista[4:7]))
+
+print("perciò la previsione sarà: {}". format(pippo.predict(lista[4:7])))
+#va dall'elemento di indice 4 fino all'elemetno di indice 6
 
         
 
