@@ -61,6 +61,8 @@ class FitIncrementModel(IncrementModel):
         #parental prediction è l'aumento nei primi mesi
         parental_prediction = super().predict(data)
         #recupero direttamente il vslore che mi dà la predict di IncrementModel (classe padre)
+
+        print("aumento negli ultimi mesi: {}". format(parental_prediction))
     
 
         plus = (dilà + parental_prediction)/2
