@@ -115,8 +115,3 @@ from matplotlib import pyplot
 pyplot.plot(lista_valori + [quo], color="tab:red")
 pyplot.plot(lista_valori, color="tab:blue")
 pyplot.show()
-
-#non so perchè non mi viene fuori il grafico
-
-
-
