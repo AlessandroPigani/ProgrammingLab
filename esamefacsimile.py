@@ -43,14 +43,15 @@ def compute_avg_monthly_difference(listone, first_year, last_year):
 
     mucchio = []
 
-    for i in range(12):     #per ogni mese
+    for i,item in listone:     #per ogni mese
         #tutto si volge all'interno di un ciclo for
-        lista = []
-        print("ciao")
+        
+        
         
         #partendo dal primo elemento ficco ogni 12 un elemento nella lista
         for k in range(i, -0, i+12):
-            lista.append(listone)
+            lista = []
+            lista.append(listone[i])
 
         print(lista)
 
