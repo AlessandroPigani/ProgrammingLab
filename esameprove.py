@@ -21,6 +21,7 @@ for i in range(12):   #appendo un elemento per mese
     for k in range(len(listone)-1):    #itero sugli anni
         
         diff = diff + (listone[k+1][i] - listone[k][i])
+        #ho sempre come riferimento lo stesso mese[i] ma gli anni [k]progrediscono
 
     risultato = diff/2
 
@@ -29,5 +30,5 @@ for i in range(12):   #appendo un elemento per mese
 print(lista_finale)
 
 
-
+#per arrivare a queste condizioni devo togliere la parte in stringa dal mio listone
 

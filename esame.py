@@ -34,16 +34,20 @@ def compute_avg_monthly_difference(listone, first_year, last_year):
     #first year è inizio intervallo
     #last year è la fine intervallo
 
+    for i,element in enumerate(listone):   #itero sulla lista
+        listone[i] = listone[i][1]  #considero solo il numero di passaeggeri. non mi servono le date
+
+    #tanto so che ogni 12 valori si passa all'anno successivo
+
     #spacchettiamo da un listone deve avere delle liste
     #una lista per anno
     for i,item in enumerate(listone): #per ogni listino in time_series
-        
-        
+            
         lista = []
        
-                   #start         #stop    #step
-        for i in range(0, len(time_series), 12):
-            lista.append(listone[i : i+12])
+                   #start     #stop    #step
+        for i in range(0, len(listone), 12):   #RIVEDERE PASSAGGIO
+            lista.append(listone[i : i+12])  #appendi le 12 coppie di valori
 
     print(lista)   #all'interno del listone ho creato delle liste, ogni lista interna al listone contiene i dati di un anno
 
@@ -58,8 +62,8 @@ def compute_avg_monthly_difference(listone, first_year, last_year):
     print(first_year) #inutile
     print(last_year)
     
-    lista = lista [first_year : last_year+1]
-    #taglio la lista dove mi interessa
+    lista = lista [first_year : last_year+1]   #slicing
+    #taglio la lista dove mi interessa, gli anni interessati
 
     print("_________________________________________________________")
 
@@ -68,24 +72,28 @@ def compute_avg_monthly_difference(listone, first_year, last_year):
 
     print("_________________________________________________________")
 
-    nuovo_listone = []
-
-
-    for i,item in enumerate(lista):
-        nuovo_listone.append(lista[i])
-
-    print(nuovo_listone)
-
-
     
-    
-    
+    lista_finale = []
 
+    for i in range(12):   #appendo un elemento per mese
+
+        diff = 0
+
+        #se considero una lista di 3 anni, ci saranno 2 variazioni
+        for k in range(len(lista)-1):    #itero sugli anni
             
+            diff = diff + (lista[k+1][i] - lista[k][i])
+            #ho sempre come riferimento lo stesso mese[i] ma gli anni [k]progrediscono
 
+        variazione_media = diff/(len(lista)-1)
+
+        lista_finale.append(variazione_media)  
+        #alla fine avrò appeso 12 risultati
+        #ogni risultato consiste nella media del mese
+
+    return lista_finale
     
-
-
+    
     #ORA DEVO TROVARE IL MODO DI FARE INTERAGIRE IL DATO DI FEBBRAIO CON FEBBRAIO, IL DATO DI MARZO CON MARZO ETC
 
     
@@ -95,7 +103,11 @@ def compute_avg_monthly_difference(listone, first_year, last_year):
         
     
 
-compute_avg_monthly_difference(time_series, "1950", "1952")
+print(compute_avg_monthly_difference(time_series, "1950", "1952"))
+
+
+
+
 
 
     

@@ -29,40 +29,12 @@ time_series = time_series_file.get_data()
 #in questa variabile mi salvo il listone
 print(time_series)
 
-def compute_avg_monthly_difference(listone, first_year, last_year):
-    #time series è il listone
-    #first year è inizio intervallo
-    #last year è la fine intervallo
+for i,element in enumerate(time_series):   #itero sulla lista
+    time_series[i] = time_series[i][1]
 
-    first_year = int(first_year) -1949
-    last_year = int(last_year) -1949
+print(time_series)
 
+#togliere le stinghe? come?
+#tagliare i caratteri meglio no ultima spiaggi
+#salvarsi solo il valore numerico (ma come?)
 
-    intervallo_tmp = last_year -first_year +1
-    print(intervallo_tmp)
-
-    mucchio = []
-
-    for i,item in listone:     #per ogni mese
-        #tutto si volge all'interno di un ciclo for
-        
-        
-        
-        #partendo dal primo elemento ficco ogni 12 un elemento nella lista
-        for k in range(i, -0, i+12):
-            lista = []
-            lista.append(listone[i])
-
-        print(lista)
-
-        mucchio.append(lista)
-
-    print(mucchio)
-
-        
-
-
-
-
-
-compute_avg_monthly_difference(time_series, "1950", "1952")
