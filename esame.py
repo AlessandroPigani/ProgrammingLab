@@ -8,7 +8,7 @@ class CSVTimeSeriesFile():
     def __init__(self,arg1):
 
         self.name = arg1     
-        #l'attributo sopravvive all'uscita della funzione
+        #l'attributo sopravvive all'uscita dalla funzione
 
 
     def get_data(self):
@@ -44,7 +44,7 @@ def compute_avg_monthly_difference(listone, first_year, last_year):
 
     #tanto so che ogni 12 valori si passa all'anno successivo
 
-    #spacchettiamo da un listone deve avere delle liste
+    #spacchettiamo, da un listone devo avere delle liste
     #una lista per anno
     for i,item in enumerate(listone): #per ogni listino in time_series
             
@@ -97,14 +97,6 @@ def compute_avg_monthly_difference(listone, first_year, last_year):
         #ogni risultato consiste nella media del mese
 
     return lista_finale
-    
-    
-    #ORA DEVO TROVARE IL MODO DI FARE INTERAGIRE IL DATO DI FEBBRAIO CON FEBBRAIO, IL DATO DI MARZO CON MARZO ETC
-
-    
-    
-
-    #sono riuscito a creare una lista per i dati del 1950, una per i dati del 1951, una per i dati del 1952
         
     
 
