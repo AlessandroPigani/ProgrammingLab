@@ -63,25 +63,22 @@ def compute_avg_monthly_difference(listone, first_year, last_year):
 
     print("_________________________________________________________")
 
-    print(lista)  #nuova. dove cè ciò che mi interessa
+    print(lista)  #nuova. dove c'è ciò che mi interessa
     print(lista[0])  #benissimo, posso iterare sulla lista per individuar gli anni 
 
     print("_________________________________________________________")
 
-    #for i,item in enumerate(lista):   #per ogni anno
-        #for k,item in lista[i]:    #per ogni coppia all'interno dell'anno
-            #elements = k
-            #lista[i].remove(k)      #è il contrario di append, tolgo la date
-            #print(k)
+    nuovo_listone = []
 
-    listini = []
 
     for i,item in enumerate(lista):
-        for element,item in lista[i]:
-            listini = [el for el in lista if i%12 == i]
+        nuovo_listone.append(lista[i])
 
-    print(listini)
+    print(nuovo_listone)
 
+
+    
+    
     
 
             
