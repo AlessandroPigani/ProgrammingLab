@@ -1,3 +1,8 @@
+class ExamException(Exception):
+
+    pass
+
+
 class CSVTimeSeriesFile():
     
     def __init__(self,arg1):
@@ -103,7 +108,7 @@ def compute_avg_monthly_difference(listone, first_year, last_year):
         
     
 
-print(compute_avg_monthly_difference(time_series, "1950", "1952"))
+print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, "1950", "1952")))
 
 
 
