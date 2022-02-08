@@ -34,25 +34,25 @@ time_series = time_series_file.get_data()
 #in questa variabile mi salvo il listone
 print(time_series)
 
-def compute_avg_monthly_difference(listone, first_year, last_year):
+def compute_avg_monthly_difference(time_series, first_year, last_year):
     #time series è il listone
     #first year è inizio intervallo
     #last year è la fine intervallo
 
-    for i,element in enumerate(listone):   #itero sulla lista
-        listone[i] = listone[i][1]  #considero solo il numero di passaeggeri. non mi servono le date
+    for i,element in enumerate(time_series):   #itero sulla lista
+        time_series[i] = time_series[i][1]  #considero solo il numero di passaeggeri. non mi servono le date
 
     #tanto so che ogni 12 valori si passa all'anno successivo
 
     #spacchettiamo, da un listone devo avere delle liste
     #una lista per anno
-    for i,item in enumerate(listone): #per ogni listino in time_series
+    for i,item in enumerate(time_series): #per ogni listino in time_series
             
         lista = []
        
-                   #start     #stop    #step
-        for i in range(0, len(listone), 12):   #RIVEDERE PASSAGGIO
-            lista.append(listone[i : i+12])  #appendi le 12 coppie di valori
+                   #start        #stop    #step
+        for i in range(0, len(time_series), 12):   #RIVEDERE PASSAGGIO
+            lista.append(time_series[i : i+12])  #appendi le 12 coppie di valori
 
     print(lista)   #all'interno del listone ho creato delle liste, ogni lista interna al listone contiene i dati di un anno
 
