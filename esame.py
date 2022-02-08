@@ -23,7 +23,7 @@ class CSVTimeSeriesFile():
 
         return listone
 
-time_series_file = CSVTimeSeriesFile("data.csv")
+time_series_file = CSVTimeSeriesFile("data.csv")  #istazio l'oggetto
 
 time_series = time_series_file.get_data()
 #in questa variabile mi salvo il listone
@@ -51,7 +51,7 @@ def compute_avg_monthly_difference(listone, first_year, last_year):
     #la funzione int me li trasforma in interi
     #non posso mettere float
     #altrimenti mi darebbe errore nello slicing
-    first_year = int(first_year) - 1949  
+    first_year = int(first_year) - 1949  #anno di partenza
     last_year = int(last_year) - 1949 
     
      
@@ -63,8 +63,30 @@ def compute_avg_monthly_difference(listone, first_year, last_year):
 
     print("_________________________________________________________")
 
-    print(lista)  #nuova
+    print(lista)  #nuova. dove cè ciò che mi interessa
+    print(lista[0])  #benissimo, posso iterare sulla lista per individuar gli anni 
 
+    print("_________________________________________________________")
+
+    #for i,item in enumerate(lista):   #per ogni anno
+        #for k,item in lista[i]:    #per ogni coppia all'interno dell'anno
+            #elements = k
+            #lista[i].remove(k)      #è il contrario di append, tolgo la date
+            #print(k)
+
+    listini = []
+
+    for i,item in enumerate(lista):
+        for element,item in lista[i]:
+            listini = [el for el in lista if i%12 == i]
+
+    print(listini)
+
+    
+
+            
+
+    
 
 
     #ORA DEVO TROVARE IL MODO DI FARE INTERAGIRE IL DATO DI FEBBRAIO CON FEBBRAIO, IL DATO DI MARZO CON MARZO ETC
