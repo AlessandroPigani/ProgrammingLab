@@ -1,3 +1,5 @@
+#mi sono concentrato sull'apertura del file e sul fatto che gli anni in input siano corretti. Non ho badato ancora al fatto che il file possa essere disordinato o carente di dati
+
 class ExamException(Exception):
 
     pass
@@ -23,7 +25,8 @@ class CSVTimeSeriesFile():
             elements = line.split(",")
 
             if(elements[0]!="date"):
-                elements[1] = float(elements[1])
+                
+                elements[1] = float(elements[1])            
 
 
                 listone.append(elements)  #inserisco nel listone sia elements[0] (le date) sia elements[1] (i passeggeri)
@@ -119,4 +122,4 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
         
     
 
-print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, 1952, "1960")))
+print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, 1949, "1960")))

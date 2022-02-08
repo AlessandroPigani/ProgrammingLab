@@ -1,3 +1,8 @@
+class ExamException(Exception):
+
+    pass
+
+
 class CSVTimeSeriesFile():
     
     def __init__(self,arg1):
@@ -17,7 +22,19 @@ class CSVTimeSeriesFile():
             if(elements[0]!="date"):
                 elements[1] = float(elements[1])
 
+                bit = elements[0].split("-")
+
+                bit[0] = int(bit[0])
+                bit[1] = int(bit[0])
+
+                #QUA HO FATTO ESPERIMENTI
+                #HO CERCATO DI CONVERTIRE L'ANNO IN VALORE NUMERICO MA È COMPLICATISSIMO DATO CHE C'È ANCHE IL TRATTINO E IL MESE..
+
                 listone.append(elements)  #inserisco nel listone sia elements[0] (le date) sia elements[1] (i passeggeri)
+
+        for i,item in listone:
+            if(listone[i][0][0]>listone[i+1][0][0]):
+                raise ExamException("dati non ordinati")
 
         my_file.close()
 
