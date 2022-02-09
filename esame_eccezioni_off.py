@@ -101,21 +101,21 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
 
     #tanto so che ogni 12 valori si passa all'anno successivo
 
-    #spacchettiamo, da un listone devo avere delle liste
+    #da un listone devo avere delle liste
     #una lista per anno
-    for i,item in enumerate(time_series): #per ogni element in time_series
-            
-        lista = []   #preparo una lista in cui ogni elemento equivarrà ai valori di un anno
-       
-                   #start        #stop    #step 
-        for i in range(0, len(time_series), 12):   #RIVEDERE PASSAGGIO
-            lista.append(time_series[i : i+12])  #appendo da i a i+12
-            #appendi le 12 coppie di valori consecutive
+           
+    lista = []   #preparo una lista in cui ogni elemento equivarrà ai valori di un anno
+    
+                #start        #stop    #step 
+    for i in range(0, len(time_series), 12):   
+        lista.append(time_series[i : i+12])  #appendo da i a i+12
+        #appendi le 12 coppie di valori consecutive
 
     print(lista)   #all'interno del listone ho creato delle liste, ogni lista interna al listone contiene i dati di un anno
+    #avrò un listone con 12 liste
 
     #_________________________________________________________
-    #mi dedico agli anni
+    #mi dedico all'intervallo di anni in input
 
     #ora mi chiedo se le variabili sono istanza della classe str
     if not isinstance(first_year, str) or not isinstance(last_year, str): 
@@ -140,8 +140,7 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
         raise ExamException("intervallo di tempo errato o senza senso: {}-{}". format(first_year+1949, last_year+1949)) 
     
      
-    print(first_year) #inutile
-    print(last_year)
+    #adesso first year e last year hanno un valore compreso fra 0 e 11
     
     lista = lista [first_year : last_year+1]   #slicing
     #taglio la lista dove mi interessa, gli anni interessati
@@ -191,4 +190,4 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
         
     
 
-print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, "1949", "1954")))
+print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, "1949", "1960")))
