@@ -28,6 +28,12 @@ class CSVTimeSeriesFile():
                 
                 try:
                     elements[1] = float(elements[1])
+
+                    #se elements[1] è un valore negativo, non posso considerarlo. Allora elements[1] acquiserà il valore standard "valore nullo"
+                    if(elements[1]<0):
+                        print("non posso considerare il valore: {}". format(elements[1]))
+                        elements[1] = "valore_nullo"
+                        #questo elemento non sarà considerato nel calcolo della variazione media finale ovviamente
                     
                           
                 #eccezione quando non riesco a convertire stringhe in numeri
@@ -164,9 +170,10 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
         #se considero una lista di 3 anni, ci saranno 2 variazioni
         for k in range(len(lista)-1):    #itero sugli anni
             
-            try:
+            try:   
                 diff = diff + (lista[k+1][i] - lista[k][i])
                 #ho sempre come riferimento lo stesso mese[i] ma gli anni [k]progrediscono
+                #se considero una stringa ovviamente non posso fare questa operazione
 
             except TypeError:  
                 print("c'è un dato errato, ma non importa")
@@ -190,4 +197,5 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
         
     
 
-print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, "1949", "1960")))
+print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, "1949", "1950")))
+#devo passare in input l'intervallo temporale sottoforma di stringa

@@ -28,8 +28,14 @@ class CSVTimeSeriesFile():
                 
                 try:
                     elements[1] = float(elements[1])
-                    
-                          
+
+
+                    #se elements[1] è un valore negativo, non posso considerarlo. Allora elements[1] acquiserà il valore standard "valore nullo"
+                    if(elements[1]<0):
+                        print("non posso considerare il valore: {}". format(elements[1]))
+                        elements[1] = "valore_nullo"
+                        #questo elemento non sarà considerato nel calcolo della variazione media finale
+                                                 
 
                 #eccezione quando non riesco a convertire stringhe in numeri
                 except ValueError:
@@ -190,4 +196,4 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
         
     
 
-print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, "1949", "1953")))
+print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, "1949", "1950")))
