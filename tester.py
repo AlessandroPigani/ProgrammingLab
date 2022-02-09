@@ -9,7 +9,7 @@ import unittest
 import tempfile
 import warnings
 
-from esame import CSVTimeSeriesFile, compute_avg_monthly_difference, ExamException
+from esame_eccezioni_off import CSVTimeSeriesFile, compute_avg_monthly_difference, ExamException
 
 score = 0
 
