@@ -1,5 +1,3 @@
-#mi sono concentrato sull'apertura del file e sul fatto che gli anni in input siano corretti. Sto vedendo i casi in cui il file sia deficitario
-
 class ExamException(Exception):
 
     pass
@@ -8,9 +6,10 @@ class ExamException(Exception):
 class CSVTimeSeriesFile():
     
     def __init__(self,arg1):
+        #il metodo __init__ serve a instanziare l'oggeto
 
         self.name = arg1     
-        #l'attributo sopravvive all'uscita dalla funzione
+
 
 
     def get_data(self):
@@ -33,7 +32,7 @@ class CSVTimeSeriesFile():
                     if(elements[1]<0):
                         print("non posso considerare il valore: {}". format(elements[1]))
                         elements[1] = "valore_nullo"
-                        #questo elemento non sarà considerato nel calcolo della variazione media finale ovviamente
+                        #questa nuova stringa non sarà considerata nel calcolo della variazione media finale ovviamente
                     
                           
                 #eccezione quando non riesco a convertire stringhe in numeri
@@ -60,19 +59,19 @@ print(time_series)
 
 def compute_avg_monthly_difference(time_series, first_year, last_year):
     #time series è il listone
-    #first year è inizio intervallo
-    #last year è la fine intervallo
+    #first year è l'inizio intervallo
+    #last year è la fine dell'intervallo
 
     #le date nella lista devono essere rigorosamente ordinate
 
     #CONTROLLO ANNI
-    for i,item in enumerate(time_series):
+    for i,item in enumerate(time_series):  #itero sul listone
     #devo mettere una condizione affinchè l'indice non mi "esca" dalla lista
         if(i!=len(time_series)-1):
 
         #se l'anno dell'elemento successivo è inferiore all'anno dell'elemento precedente, alzo eccezione
             if(int(time_series[i+1][0][0:4])<int(time_series[i][0][0:4])):
-                raise ExamException("a un dato anno segue un anno inferiore")
+                raise ExamException("a un dato anno segue un anno inferiore, ordine temporale compromesso")
 
     
     #CONTROLLO DEI MESI
@@ -84,26 +83,26 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
 
 
         if(i != len(time_series)-1):
-            #uso questa contromisura, poco elegante ma efficace
-            #se la i raggiunge l'ultimo elemento non faccio più il controllo, sennò esco dalla lista di 1
+            #uso questa contromisura
+            #se la i raggiunge l'ultimo elemento non faccio più il controllo, sennò l'indice esce dalla lista di 1
 
             #se ci sono due mesi consecutivi uguali, alzo eccezione
             if(int(time_series[i+1][0][5:])==int(time_series[i][0][5:])):
                 raise ExamException("non c'è ordine temporale, ci sono mesi uguali in due elementi consecutivi")
             
 
-            #se il mese succesivo è inferiore al mese precedente
+            #se il mese successivo è inferiore al mese precedente
             if(int(time_series[i+1][0][5:]) < int(time_series[i][0][5:])):
                 #quando l'anno scatta è chiaro che succede ciò
-                #ma se l'anno dell'elemento successivo è minore o uguale all'anno dell'elemento precedente, alzo eccezione
+                #ma se l'anno dell'elemento successivo è uguale all'anno dell'elemento precedente, alzo l'eccezione
                 if(int(time_series[i+1][0][0:4]) == int(time_series[i][0][0:4])):
                     raise ExamException("non c'è ordine nei mesi")
 
-        #FINE DEL CONTROLLO SUI MESI
+        #FINE DEL CONTROLLO SULLE DATE DEL FILE
 
     #adesso mi sbarazzo delle date, non mi servono più
     for i,element in enumerate(time_series):   #itero sulla lista
-        time_series[i] = time_series[i][1]  #considero solo il numero di passaeggeri
+        time_series[i] = time_series[i][1]  #considero solo il numero di passeggeri
 
     #tanto so che ogni 12 valori si passa all'anno successivo
 
@@ -117,7 +116,7 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
         lista.append(time_series[i : i+12])  #appendo da i a i+12
         #appendi le 12 coppie di valori consecutive
 
-    print(lista)   #all'interno del listone ho creato delle liste, ogni lista interna al listone contiene i dati di un anno
+    print(lista)   #all'interno del listone ho creato delle liste, ogni lista interna al listone contiene i dati dei passeggeri di un anno
     #avrò un listone con 12 liste
 
     #_________________________________________________________
@@ -134,7 +133,7 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
     #altrimenti mi darebbe errore nello slicing
     try:
         first_year = int(first_year) - 1949  #anno di partenza
-        last_year = int(last_year) - 1949
+        last_year = int(last_year) - 1949    #anno di arrivo
 
     except:
         raise ExamException("almeno uno dei valori corrispondenti alla data non è valido o non è convertibile a numero intero: {} {}". format(first_year, last_year))
@@ -180,13 +179,10 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
                 #sommare numeri e stringhe consiste in un TypeError
                 #diff non aumenta
 
-                
-                 
+                                
         
-            variazione_media = diff/(len(lista)-1)  #il fatto che manchi un dato incide sul divisore
-
-            #se avevo 2 mesi e uno non lo ho considerato, diff rimane zero (che è una delle richieste del prof)
-            #se considero tanti anni ma ho solo una misurazione, diff rimane 0 (TOP)
+        variazione_media = diff/(len(lista)-1)  
+                 
        
 
         lista_finale.append(variazione_media)  
@@ -197,5 +193,5 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
         
     
 
-print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, "1949", "1950")))
+print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, "1950", "1953")))
 #devo passare in input l'intervallo temporale sottoforma di stringa
