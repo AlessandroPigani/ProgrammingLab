@@ -191,7 +191,6 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
 
     return lista_finale
         
-    
 
-print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, "1950", "1952")))
+
 #devo passare in input l'intervallo temporale sottoforma di stringa
