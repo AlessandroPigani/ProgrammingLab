@@ -94,7 +94,7 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
         last_year = int(last_year) - 1949
 
     except:
-        raise ExamException("almeno un dei valori corrispondenti alla data non è valido o non è convertibile a numero: {} {}". format(first_year, last_year))
+        raise ExamException("almeno un dei valori corrispondenti alla data non è valido o non è convertibile a numero intero: {} {}". format(first_year, last_year))
 
     if(first_year<0 or last_year>11):
         raise ExamException("non abbiamo a disposizione dati relativi a questo intervallo di tempo: {}-{}". format(first_year+1949, last_year+1949))

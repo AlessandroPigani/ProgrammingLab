@@ -20,6 +20,7 @@ class CSVTimeSeriesFile():
         except:
             raise ExamException("il file non esiste")
 
+
         for line in my_file:
             elements = line.split(",")
 
@@ -54,6 +55,33 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
     #time series è il listone
     #first year è inizio intervallo
     #last year è la fine intervallo
+
+    
+    #FUNZIONA
+    for i,item in enumerate(time_series):
+        #considero se i mesi sono nel range fra 1 e 12
+        #[i] indica il listino, [0] indica la data, [5:] intende i caratteri relativi al mese
+        if(int(time_series[i][0][5:])<1 or int(time_series[i][0][5:])>12):
+            raise ExamException("mese non esistente, ordine temporale della lista compromesso")
+
+    for i,item in enumerate(time_series):
+
+        #IL PROBLEMA È CHE SE NON CI SONO INTOPPI, IL CICLO VA AVANTI FINO FINCHÈ L'INDICE I MI VA FUORI DALLA lista
+        if(i != len(time_series)-1):
+            #uso questa contromisura, poco elegante ma efficace
+            #se la i raggiunge l'ultimo elemento non faccio più il controllo, sennò esco dalla lista di 1
+
+            #se ci sono due mesi consecutivi uguali, alzo eccezione
+            if(int(time_series[i+1][0][5:])==int(time_series[i][0][5:])):
+                raise ExamException("non c'è ordine temporale, ci sono mesi uguali in due elementi consecutivi")
+            
+
+            #se il mese succesivo è inferiore al mese precedente
+            if(int(time_series[i+1][0][5:]) < int(time_series[i][0][5:])):
+                #quando l'anno scatta è chiaro che succede ciò
+                #ma se l'anno dell'elemento successivo è minore o uguale all'anno dell'elemento precedente
+                if(int(time_series[i+1][0][0:4]) <= int(time_series[i][0][0:4])):
+                    raise ExamException("non c'è ordine nei mesi")
 
     
 
@@ -151,4 +179,4 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
         
     
 
-print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, 1949, 1960)))
+print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, "1949", "1955")))

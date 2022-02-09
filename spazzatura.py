@@ -35,3 +35,6 @@ lista_nov.append(lista0[10])
 lista_dic.append(lista0[11])
 
 print(lista_gen)
+
+c = "lista"
+print(c[0:4])
