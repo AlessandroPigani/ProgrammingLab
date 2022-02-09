@@ -46,7 +46,7 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
 
     #spacchettiamo, da un listone devo avere delle liste
     #una lista per anno
-    for i,item in enumerate(time_series): #per ogni listino in time_series
+    for i,item in enumerate(time_series): #per ogni element in time_series
             
         lista = []
        

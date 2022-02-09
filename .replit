@@ -1,2 +1,2 @@
 language = "bash"
-run = "/bin/bash"    //questo è il comando di run
+run = "/bin/bash"    #questo è il comando di run

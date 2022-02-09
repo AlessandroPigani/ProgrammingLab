@@ -30,10 +30,9 @@ class CSVTimeSeriesFile():
                     
                           
 
-                except Exception as e:
-                    ("non sono riuscito a convertire una stinga a numero ma non importa. errore causato da: {}". format(e)) 
-                    #come mai non mi stampa niente?
-                    
+                #eccezione quando non riesco a convertire stringhe in numeri
+                except ValueError:
+                    print("non sono riuscito a convertire la seguente stinga a numero: {}. Ma non importa". format(elements[1]))
                     
 
                 listone.append(elements)       
@@ -65,7 +64,7 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
 
     #spacchettiamo, da un listone devo avere delle liste
     #una lista per anno
-    for i,item in enumerate(time_series): #per ogni listino in time_series
+    for i,item in enumerate(time_series): #per ogni element in time_series
             
         lista = []   #preparo una lista in cui ogni elemento equivarrà ai valori di un anno
        
@@ -76,6 +75,14 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
 
     print(lista)   #all'interno del listone ho creato delle liste, ogni lista interna al listone contiene i dati di un anno
 
+    #_________________________________________________________
+    #mi dedico agli anni
+
+    #ora mi chiedo se le variabili sono istanza della classe str
+    if not isinstance(first_year, str) or not isinstance(last_year, str): 
+        raise ExamException("volevo gli anni {} {} sotto forma di stringa". format(first_year, last_year))
+
+
     
     #la funzione int me li trasforma in interi
     #non posso mettere float
@@ -85,7 +92,7 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
         last_year = int(last_year) - 1949
 
     except:
-        raise ExamException("almeno un dei valori corrispondenti alla data non è valido non è convertibile a numero: {} {}". format(first_year, last_year))
+        raise ExamException("almeno un dei valori corrispondenti alla data non è valido o non è convertibile a numero: {} {}". format(first_year, last_year))
 
     if(first_year<0 or last_year>11):
         raise ExamException("non abbiamo a disposizione dati relativi a questo intervallo di tempo: {}-{}". format(first_year+1949, last_year+1949))
@@ -122,14 +129,13 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
                 diff = diff + (lista[k+1][i] - lista[k][i])
                 #ho sempre come riferimento lo stesso mese[i] ma gli anni [k]progrediscono
 
-            except Exception as e:
-                print("c'è un dato mancante, ma non importa")
+            except TypeError:  
+                print("c'è un dato errato, ma non importa")
+                #sommare numeri e stringhe consiste in un TypeError
                 #diff non aumenta
 
                 
-                
-
-        
+                 
         
             variazione_media = diff/(len(lista)-1)  #il fatto che manchi un dato incide sul divisore
 
@@ -145,4 +151,4 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
         
     
 
-print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, 1950, "1953")))
+print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, 1949, 1960)))
