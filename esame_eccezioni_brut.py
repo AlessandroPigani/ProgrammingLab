@@ -27,15 +27,16 @@ class CSVTimeSeriesFile():
                 
                 try:
                     elements[1] = float(elements[1])
-                    if(elements[1]>=0):   #se il valore convertito a numero è positivo, lo aggiungo al listone
-                    #escludo così il numero di passeggeri negativi
-                        listone.append(elements)    
+                    
+                          
 
                 except Exception as e:
                     ("non sono riuscito a convertire una stinga a numero ma non importa. errore causato da: {}". format(e)) 
-
+                    #come mai non mi stampa niente?
                     
-                    #il valore di ciò che non sriesco a traformare a numero acquisisce valore dtandard -1      
+                    
+
+                listone.append(elements)       
 
 
         my_file.close()
@@ -112,14 +113,29 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
     for i in range(12):   #appendo un elemento per mese
 
         diff = 0
+        
 
         #se considero una lista di 3 anni, ci saranno 2 variazioni
         for k in range(len(lista)-1):    #itero sugli anni
             
-            diff = diff + (lista[k+1][i] - lista[k][i])
-            #ho sempre come riferimento lo stesso mese[i] ma gli anni [k]progrediscono
+            try:
+                diff = diff + (lista[k+1][i] - lista[k][i])
+                #ho sempre come riferimento lo stesso mese[i] ma gli anni [k]progrediscono
 
-        variazione_media = diff/(len(lista)-1)
+            except Exception as e:
+                print("c'è un dato mancante, ma non importa")
+                #diff non aumenta
+
+                
+                
+
+        
+        
+            variazione_media = diff/(len(lista)-1)  #il fatto che manchi un dato incide sul divisore
+
+            #se avevo 2 mesi e uno non lo ho considerato, diff rimane zero (che è una delle richieste del prof)
+            #se considero tanti anni ma ho solo una misurazione, diff rimane 0 (TOP)
+       
 
         lista_finale.append(variazione_media)  
         #alla fine avrò appeso 12 risultati
@@ -129,4 +145,4 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
         
     
 
-print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, 1949, "1950")))
+print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, 1950, "1953")))
