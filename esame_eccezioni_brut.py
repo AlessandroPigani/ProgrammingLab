@@ -26,13 +26,17 @@ class CSVTimeSeriesFile():
             if(elements[0]!="date"):
                 
                 try:
-                    elements[1] = float(elements[1])    
+                    elements[1] = float(elements[1])
+                    if(elements[1]>=0):   #se il valore convertito a numero è positivo, lo aggiungo al listone
+                    #escludo così il numero di passeggeri negativi
+                        listone.append(elements)    
 
                 except Exception as e:
-                    ("non sono riuscito a convertire una stinga a numero ma non importa. errore causato da: {}". format(e))        
+                    ("non sono riuscito a convertire una stinga a numero ma non importa. errore causato da: {}". format(e)) 
 
+                    
+                    #il valore di ciò che non sriesco a traformare a numero acquisisce valore dtandard -1      
 
-                listone.append(elements)  #inserisco nel listone sia elements[0] (le date) sia elements[1] (i passeggeri)
 
         my_file.close()
 
@@ -62,7 +66,7 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
     #una lista per anno
     for i,item in enumerate(time_series): #per ogni listino in time_series
             
-        lista = []
+        lista = []   #preparo una lista in cui ogni elemento equivarrà ai valori di un anno
        
                    #start        #stop    #step 
         for i in range(0, len(time_series), 12):   #RIVEDERE PASSAGGIO
@@ -125,4 +129,4 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
         
     
 
-print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, 1949, "1960")))
+print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, 1949, "1950")))

@@ -10,7 +10,7 @@ class CSVTimeSeriesFile():
     def __init__(self,arg1):
 
         self.name = arg1     
-        #l'attributo sopravvive all'uscita dalla funzione
+        
 
 
     def get_data(self):
@@ -19,7 +19,7 @@ class CSVTimeSeriesFile():
             my_file = open(self.name,"r")
 
         except:
-            raise ExamException("il file non esiste")
+            raise ExamException("il file {} non esiste". format(self.name))
 
         for line in my_file:
             elements = line.split(",")
@@ -77,7 +77,7 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
         last_year = int(last_year) - 1949
 
     except:
-        raise ExamException("almeno un dei valori corrispondenti alla data non è valido non è convertibile a numero: {} {}". format(first_year, last_year))
+        raise ExamException("almeno un dei valori corrispondenti alla data non è convertibile a numero: {} {}". format(first_year, last_year))
 
     if(first_year<0 or last_year>11):
         raise ExamException("non abbiamo a disposizione dati relativi a questo intervallo di tempo: {}-{}". format(first_year+1949, last_year+1949))
@@ -122,4 +122,4 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
         
     
 
-print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, 1949, "1960")))
+print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, "1949", "1954")))

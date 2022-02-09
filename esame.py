@@ -58,7 +58,7 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
     print(lista)   #all'interno del listone ho creato delle liste, ogni lista interna al listone contiene i dati di un anno
 
     
-    #la funzione int me li trasforma in interi
+    #la funzione int mi trasforma gli anni in interi
     #non posso mettere float
     #altrimenti mi darebbe errore nello slicing
     first_year = int(first_year) - 1949  #anno di partenza
@@ -101,7 +101,7 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
         
     
 
-print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, "1955", "1952")))
+print("variazione media di passeggeri per mese: {}". format(compute_avg_monthly_difference(time_series, "1949", "1951")))
 
 
 
